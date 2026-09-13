@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 Preliminary (PET) — Listening Practice Test 1</title>
+<style>
+:root{
+  --ink:#1b2a44; --ink-soft:#4a5a75; --paper:#f1f3f7; --card:#fff;
+  --rule:#d2d8e2; --navy:#22375c; --navy-lite:#e6ecf5;
+  --red:#c4303f; --red-lite:#fbeaec;
+  --green:#177a55; --green-lite:#e3f2eb;
+  --gold:#b8860b; --gold-lite:#fbf2dc;
+  --shadow:0 1px 2px rgba(27,42,68,.08), 0 8px 24px rgba(27,42,68,.07);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+input{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.topbar{position:sticky;top:0;z-index:40;background:var(--navy);color:#fff;display:flex;align-items:center;gap:14px;padding:10px 20px;box-shadow:0 2px 10px rgba(0,0,0,.18);flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;white-space:nowrap}
+.brand span{color:#f0a8b0}
+.topbar .spacer{flex:1}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 13px;font-size:15px;white-space:nowrap}
+.chip b{font-variant-numeric:tabular-nums}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:15px}
+.ghost:hover{background:rgba(255,255,255,.14)}
+
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 180px}
+.screen{display:none}.screen.on{display:block}
+
+.cover{background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-top:14px}
+.cover-head{background:linear-gradient(135deg,#22375c,#c4303f 165%);color:#fff;padding:38px 40px 34px}
+.cover-head .eyebrow{font-size:14px;letter-spacing:2.4px;text-transform:uppercase;color:#f3c2c7;margin:0 0 6px}
+.cover-head h1{font-family:var(--serif);font-size:38px;margin:0 0 10px;font-weight:normal;line-height:1.15}
+.cover-head p{margin:0;color:#d5dded;max-width:56ch}
+.cover-body{padding:30px 40px 36px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:26px}
+.fact{padding:14px 16px;border-right:1px solid var(--rule)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:var(--serif);font-size:24px;line-height:1.1}
+.fact small{color:var(--ink-soft);font-size:14px}
+.cover-body h2{font-size:16px;margin:0 0 10px;color:var(--red)}
+.cover-body ol{margin:0 0 24px;padding-left:22px;color:var(--ink-soft);max-width:66ch}
+.cover-body ol li{margin-bottom:7px}
+.namefield{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.namefield input{border:1px solid var(--rule);border-radius:8px;padding:12px 14px;min-width:250px;background:#fff}
+
+.btn{background:var(--navy);color:#fff;border:0;border-radius:9px;padding:13px 26px;font-size:16px;font-weight:600;box-shadow:0 2px 0 #16243c}
+.btn:hover{background:#1b2c4a}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 0 #16243c}
+.btn.alt{background:#fff;color:var(--navy);border:1.5px solid var(--navy);box-shadow:none}
+.btn.alt:hover{background:var(--navy-lite)}
+.btn.red{background:var(--red);box-shadow:0 2px 0 #8e222d}
+.btn.red:hover{background:#ab2a37}
+.btn.grey{background:#fff;color:var(--ink-soft);border:1.5px solid var(--rule);box-shadow:none}
+.btn.small{padding:9px 17px;font-size:15px}
+
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{background:#fff;border:1px solid var(--rule);border-bottom:3px solid transparent;border-radius:8px 8px 0 0;padding:10px 20px;color:var(--ink-soft);font-size:16px}
+.tab.on{border-bottom-color:var(--red);color:var(--ink);font-weight:600}
+.tab .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rule);margin-right:8px;vertical-align:1px}
+.tab.done .dot{background:var(--green)}
+
+.paper{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:30px 36px 34px}
+.part-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.part-badge{background:var(--navy);color:#fff;border-radius:6px;padding:5px 14px;font-size:15px;font-weight:600;letter-spacing:.5px}
+.part-head .qrange{background:var(--red);color:#fff;border-radius:6px;padding:5px 14px;font-size:15px;font-weight:600}
+.part-head .scorepill{margin-left:auto;font-size:15px;background:var(--green-lite);color:var(--green);border-radius:999px;padding:5px 15px;display:none}
+.part-head .scorepill.on{display:inline-block}
+.task-intro{font-size:16.5px;color:var(--ink-soft);margin:0 0 18px;max-width:78ch;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.ar{display:none;direction:rtl;text-align:right;font-size:16px;color:var(--navy);background:var(--navy-lite);border-radius:8px;padding:9px 14px;margin:0 0 16px}
+body.show-ar .ar{display:block}
+
+.reel{border:1px solid var(--rule);border-radius:11px;background:#fafbfd;padding:15px 18px;margin-bottom:24px}
+.reel-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.reel-label{font-size:15px;color:var(--ink-soft);flex:1;min-width:190px}
+.reel-label b{display:block;color:var(--ink);font-size:16px}
+.reel audio{width:100%;margin-top:12px;height:40px}
+.reel .warn{display:none;margin-top:10px;font-size:14px;color:var(--red)}
+.reel.broken .warn{display:block}
+
+.qblock{margin-bottom:30px}
+.qstem{display:flex;gap:12px;align-items:baseline;margin-bottom:12px}
+.qstem .num{background:var(--red);color:#fff;border-radius:6px;min-width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex:none}
+.qstem .txt{font-size:18px;font-weight:600}
+
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pic{border:2px solid var(--rule);border-radius:10px;background:#fff;padding:10px;text-align:center;position:relative}
+.pic:hover{border-color:var(--navy)}
+.pic.sel{border-color:var(--red);background:var(--red-lite)}
+.pic.ok{border-color:var(--green);background:var(--green-lite)}
+.pic.no{border-color:var(--red);background:var(--red-lite)}
+.pic svg{width:100%;height:auto;display:block}
+.pic .lt{display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-weight:700;font-size:15px}
+.pic .tick{width:22px;height:22px;border:2px solid var(--navy);border-radius:4px;display:inline-block;line-height:19px;font-size:15px}
+.pic.sel .tick,.pic.ok .tick{background:var(--navy);color:#fff}
+.pic.ok .tick{background:var(--green);border-color:var(--green)}
+.ln{fill:#eef3fa;stroke:#22375c;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.ln.hollow{fill:none}
+.ln.solid{fill:#22375c;stroke:none}
+
+.opts{display:flex;flex-direction:column;gap:8px;max-width:640px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--rule);border-radius:9px;padding:11px 15px;background:#fff;font-size:17px;text-align:left}
+.opt:hover{border-color:var(--navy);background:#fafbfd}
+.opt.sel{border-color:var(--red);background:var(--red-lite)}
+.opt.ok{border-color:var(--green);background:var(--green-lite)}
+.opt.no{border-color:var(--red);background:var(--red-lite)}
+.opt .lt{font-weight:700;color:var(--navy);min-width:20px}
+
+.gapcard{border:2px solid var(--red);border-radius:10px;padding:22px 26px;background:#fff;max-width:700px}
+.gapline{display:flex;gap:10px;align-items:baseline;padding:9px 0;font-size:17.5px;font-family:var(--serif);flex-wrap:wrap}
+.gapline .num{background:var(--red);color:#fff;border-radius:5px;padding:1px 9px;font-family:var(--sans);font-size:14px;font-weight:700}
+input.gap{border:0;border-bottom:2px dotted var(--ink-soft);background:transparent;width:210px;padding:3px 5px;font-family:var(--sans);font-size:16px}
+input.gap:focus{border-bottom-color:var(--red);background:var(--red-lite);border-radius:4px 4px 0 0}
+input.gap.filled{border-bottom-style:solid;border-bottom-color:var(--navy)}
+input.gap.ok{border-bottom-color:var(--green);background:var(--green-lite)}
+input.gap.no{border-bottom-color:var(--red);background:var(--red-lite)}
+.solution{font-family:var(--sans);font-size:14.5px;color:var(--green);margin-left:6px;white-space:nowrap}
+
+table.yn{border-collapse:separate;border-spacing:0;width:100%;max-width:700px;border:2px solid var(--red);border-radius:10px;overflow:hidden;background:#fff}
+table.yn th{background:var(--navy);color:#fff;font-size:14px;padding:9px 6px;width:78px;text-align:center}
+table.yn th small{display:block;font-size:12px;opacity:.8;font-weight:400}
+table.yn td{padding:13px 16px;border-top:1px solid var(--rule);font-size:17px}
+table.yn tr:first-child td{border-top:0}
+table.yn td.c{text-align:center;width:78px}
+.ynbtn{width:38px;height:38px;border:2px solid var(--navy);border-radius:6px;background:#fff;font-size:17px;color:var(--navy)}
+.ynbtn:hover{background:var(--navy-lite)}
+.ynbtn.sel{background:var(--navy);color:#fff}
+.ynbtn.ok{background:var(--green);border-color:var(--green);color:#fff}
+.ynbtn.no{background:var(--red);border-color:var(--red);color:#fff}
+
+.why{margin-top:10px;padding:10px 14px;border-radius:8px;background:var(--gold-lite);border:1px solid #e6d29a;font-size:15px;display:none;max-width:700px}
+.why.on{display:block}
+.why b{color:#7a5b05}
+
+.markbar{border-top:1px solid var(--rule);margin-top:26px;padding-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.markbar .out{font-size:16px;color:var(--ink-soft)}
+.markbar .out b{font-family:var(--serif);font-size:21px;color:var(--navy)}
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:35;background:rgba(255,255,255,.97);border-top:1px solid var(--rule);box-shadow:0 -4px 18px rgba(27,42,68,.08);padding:10px 20px 12px}
+.dock-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.marks{display:flex;gap:12px;flex:1;flex-wrap:wrap}
+.mgroup{display:flex;gap:3px;align-items:center}
+.mgroup > span{font-size:12px;color:var(--ink-soft);margin-right:4px}
+.mk{width:27px;height:27px;border-radius:6px;border:1px solid var(--rule);background:#fff;font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;padding:0}
+.mk.filled{background:var(--navy);border-color:var(--navy);color:#fff}
+.mk.here{outline:2px solid var(--gold);outline-offset:1px}
+.mk.ok{background:var(--green);border-color:var(--green);color:#fff}
+.mk.no{background:var(--red);border-color:var(--red);color:#fff}
+
+.result-hero{background:linear-gradient(135deg,#22375c,#c4303f 165%);color:#fff;border-radius:14px;padding:34px 40px;text-align:center;box-shadow:var(--shadow)}
+.big{font-family:var(--serif);font-size:72px;line-height:1;margin:6px 0}
+.result-hero p{margin:4px 0;color:#e2c9cd}
+.scorebits{display:flex;justify-content:center;gap:36px;margin-top:20px;flex-wrap:wrap}
+.scorebits div{font-size:14.5px;color:#e2c9cd}
+.scorebits b{display:block;font-family:var(--serif);font-size:27px;color:#fff}
+.secbars{background:#fff;border-radius:12px;box-shadow:var(--shadow);padding:24px 30px;margin-top:18px}
+.sb{display:flex;align-items:center;gap:14px;margin-bottom:12px;font-size:16px;flex-wrap:wrap}
+.sb .lbl{width:230px;color:var(--ink-soft)}
+.sb .track{flex:1;min-width:120px;height:13px;background:#e6eaf1;border-radius:7px;overflow:hidden}
+.sb .track i{display:block;height:100%;background:var(--navy);border-radius:7px}
+.sb .val{width:54px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.badge{background:var(--gold-lite);border:1px solid #e6d29a;border-radius:999px;padding:6px 15px;font-size:14.5px}
+
+.cert{background:#fff;border:2px solid var(--navy);border-radius:12px;padding:38px 44px 30px;margin-top:18px;text-align:center;
+  background-image:radial-gradient(circle at 10% 10%,var(--navy-lite) 0,transparent 40%),radial-gradient(circle at 90% 90%,var(--red-lite) 0,transparent 40%)}
+.cert .frame{border:1px solid #b9c5d8;border-radius:8px;padding:26px 22px 20px}
+.cert h3{font-family:var(--serif);font-size:30px;margin:0 0 2px;font-weight:normal;letter-spacing:.5px}
+.cert .sub{margin:0 0 18px;color:var(--ink-soft);font-size:14px;letter-spacing:1.6px;text-transform:uppercase}
+.cert .awarded{margin:0;color:var(--ink-soft);font-size:15px;font-style:italic}
+.cert .who{font-family:var(--serif);font-size:34px;color:var(--navy);border-bottom:1px solid var(--rule);display:inline-block;padding:4px 40px 6px;margin:8px 0 14px;min-width:260px}
+.cert .bandbox{display:inline-block;border:2px solid var(--navy);border-radius:12px;padding:10px 32px 12px;margin:8px 0 12px;background:#fff}
+.cert .bandlbl{display:block;font-size:12px;letter-spacing:2px;color:var(--navy);text-transform:uppercase}
+.cert .bandnum{display:block;font-family:var(--serif);font-size:50px;line-height:1;color:var(--ink)}
+.cert .cscore{margin:0;font-size:16px;color:var(--ink-soft)}
+.cert .cmsg{margin:14px auto 0;font-size:15.5px;max-width:46ch}
+.cert .sig{display:flex;justify-content:space-between;gap:24px;margin-top:28px;flex-wrap:wrap}
+.cert .sig div{flex:1;min-width:150px;border-top:1px solid var(--rule);padding-top:6px}
+.cert .sig span{display:block;font-family:var(--serif);font-size:16px}
+.cert .sig small{color:var(--ink-soft);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:80;display:none}
+.foot{text-align:center;color:var(--ink-soft);font-size:14px;padding:26px 0 6px}
+
+@media print{
+  .topbar,.dock,.tabs,.no-print,.markbar,.reel{display:none!important}
+  body{background:#fff}
+  .wrap{padding:0}
+  body.cert-only .result-hero,body.cert-only .secbars,body.cert-only .foot{display:none!important}
+  body.cert-only .cert{margin-top:0;page-break-inside:avoid}
+}
+@media (max-width:680px){
+  .wrap{padding:16px 12px 200px}
+  .paper{padding:20px 16px 26px}
+  .cover-head,.cover-body{padding-left:22px;padding-right:22px}
+  .cover-head h1{font-size:29px}
+  .pics{grid-template-columns:1fr;gap:10px}
+  .pic svg{max-width:260px;margin:0 auto}
+  .big{font-size:56px}
+  .sb .lbl{width:auto}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">B1 Preliminary <span>· Listening Test 1</span></div>
+  <div class="spacer"></div>
+  <div class="chip" id="chipProgress" hidden>Answered <b id="ansCount">0</b>/25</div>
+  <button class="ghost" id="btnAr" title="Arabic instructions">ع</button>
+  <button class="ghost" id="btnSave" hidden>Save answers</button>
+</div>
+
+<div class="wrap">
+
+<!-- ===== COVER ===== -->
+<section class="screen on" id="scrCover">
+  <div class="cover">
+    <div class="cover-head">
+      <p class="eyebrow">Paper 2 · Listening</p>
+      <h1>Practice Test 1</h1>
+      <p>Four parts, twenty-five questions, about twenty minutes of audio. You hear every recording twice — the pause and the second playing are already in each track.</p>
+    </div>
+    <div class="cover-body">
+      <div class="facts">
+        <div class="fact"><b>4</b><small>parts</small></div>
+        <div class="fact"><b>25</b><small>questions</small></div>
+        <div class="fact"><b>2×</b><small>every recording plays twice</small></div>
+        <div class="fact"><b>~20</b><small>minutes of audio</small></div>
+      </div>
+      <h2>How to use this test</h2>
+      <ol>
+        <li>Read the questions for a part before you press play. In Part 1, look carefully at all three pictures first.</li>
+        <li>Listen the first time and answer. Use the second playing to check, not to start.</li>
+        <li>In Part 3 write only the missing words, and copy the spelling you hear.</li>
+        <li>Mark each part on its own with the button at the bottom, or answer all four and see the full result.</li>
+      </ol>
+      <div class="namefield">
+        <input type="text" id="studentName" placeholder="Your name" autocomplete="off">
+        <button class="btn" id="btnStart">Start the test</button>
+        <button class="btn alt" id="btnResume">Load saved answers</button>
+        <input type="file" id="fileResume" accept="application/json" hidden>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEST ===== -->
+<section class="screen" id="scrTest">
+  <div class="tabs" id="tabs"></div>
+
+  <div class="paper part" id="part1">
+    <div class="part-head"><span class="part-badge">PART 1</span><span class="qrange">Questions 1 – 7</span><span class="scorepill" id="pill1"></span></div>
+    <p class="task-intro">There are seven questions in this part. For each question there are three pictures and a short recording. Choose the correct picture and tick the box below it.</p>
+    <p class="ar">في هذا الجزء سبعة أسئلة. لكل سؤال ثلاث صور وتسجيل قصير. اختر الصورة الصحيحة وضع علامة في المربع أسفلها.</p>
+    <div class="reel" data-reel="1"></div>
+    <div id="p1"></div>
+    <div class="markbar no-print"><button class="btn red small" data-mark="1">Mark Part 1</button><span class="out" id="out1"></span></div>
+  </div>
+
+  <div class="paper part" id="part2" hidden>
+    <div class="part-head"><span class="part-badge">PART 2</span><span class="qrange">Questions 8 – 13</span><span class="scorepill" id="pill2"></span></div>
+    <p class="task-intro">You will hear a doctor talking about how people can lead a healthier life. For each question, tick the correct box.</p>
+    <p class="ar">ستستمع إلى طبيب يتحدث عن كيفية العيش بصحة أفضل. اختر الإجابة الصحيحة لكل سؤال.</p>
+    <div class="reel" data-reel="2"></div>
+    <div id="p2"></div>
+    <div class="markbar no-print"><button class="btn red small" data-mark="2">Mark Part 2</button><span class="out" id="out2"></span></div>
+  </div>
+
+  <div class="paper part" id="part3" hidden>
+    <div class="part-head"><span class="part-badge">PART 3</span><span class="qrange">Questions 14 – 19</span><span class="scorepill" id="pill3"></span></div>
+    <p class="task-intro">You will hear a tour guide giving information about an old British house. For each question, fill in the missing information in the numbered space.</p>
+    <p class="ar">ستستمع إلى مرشد سياحي يتحدث عن منزل بريطاني قديم. أكمل المعلومات الناقصة في كل فراغ مرقّم.</p>
+    <div class="reel" data-reel="3"></div>
+    <div class="gapcard" id="p3"></div>
+    <div class="markbar no-print"><button class="btn red small" data-mark="3">Mark Part 3</button><span class="out" id="out3"></span></div>
+  </div>
+
+  <div class="paper part" id="part4" hidden>
+    <div class="part-head"><span class="part-badge">PART 4</span><span class="qrange">Questions 20 – 25</span><span class="scorepill" id="pill4"></span></div>
+    <p class="task-intro">Look at the six sentences for this part. You will hear a conversation between a boy, Simon, and a girl, Tina, about some problems Tina is having at school. Decide if each sentence is correct or incorrect. If it is correct, tick <b>A for YES</b>. If it is not correct, tick <b>B for NO</b>.</p>
+    <p class="ar">ستستمع إلى محادثة بين سايمون وتينا عن مشكلات تواجهها تينا في المدرسة. قرّر إن كانت كل جملة صحيحة (نعم) أم غير صحيحة (لا).</p>
+    <div class="reel" data-reel="4"></div>
+    <table class="yn"><thead><tr><td></td><th>A<small>YES</small></th><th>B<small>NO</small></th></tr></thead><tbody id="p4"></tbody></table>
+    <div id="p4why"></div>
+    <div class="markbar no-print"><button class="btn red small" data-mark="4">Mark Part 4</button><span class="out" id="out4"></span></div>
+    <div class="markbar no-print" style="border:0;padding-top:6px">
+      <button class="btn" id="btnFinish">See my full result</button>
+      <button class="btn alt small" id="btnSaveAttempt">Save my answers to a file</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULT ===== -->
+<section class="screen" id="scrResult">
+  <div class="result-hero">
+    <p>Your listening score</p>
+    <div class="big" id="scoreOut">0/25</div>
+    <p id="scoreNote"></p>
+    <div class="scorebits">
+      <div><b id="pctOut">0%</b>accuracy</div>
+      <div><b id="levelOut">—</b>level indicator</div>
+      <div><b id="bestOut">—</b>strongest part</div>
+    </div>
+  </div>
+
+  <div class="secbars">
+    <div class="sb"><span class="lbl">Part 1 — pictures</span><span class="track"><i id="b1"></i></span><span class="val" id="v1">0/7</span></div>
+    <div class="sb"><span class="lbl">Part 2 — multiple choice</span><span class="track"><i id="b2"></i></span><span class="val" id="v2">0/6</span></div>
+    <div class="sb"><span class="lbl">Part 3 — gap fill</span><span class="track"><i id="b3"></i></span><span class="val" id="v3">0/6</span></div>
+    <div class="sb"><span class="lbl">Part 4 — yes / no</span><span class="track"><i id="b4"></i></span><span class="val" id="v4">0/6</span></div>
+    <div class="badges" id="badges"></div>
+    <p id="advice" style="color:var(--ink-soft);font-size:16px;margin:18px 0 0;max-width:68ch"></p>
+    <div class="markbar no-print" style="border:0">
+      <button class="btn" id="btnReview">Go through my answers</button>
+      <button class="btn alt" id="btnSaveResult">Save my result file</button>
+      <button class="btn grey" id="btnRetake">Start again</button>
+    </div>
+  </div>
+
+  <div class="cert" id="cert">
+    <div class="frame">
+      <h3>Certificate of Achievement</h3>
+      <p class="sub">B1 Preliminary (PET) · Listening Practice Test 1</p>
+      <p class="awarded">This is to certify that</p>
+      <div class="who" id="certName">Student</div>
+      <p class="awarded">completed the twenty-five question Listening paper and scored</p>
+      <div class="bandbox"><span class="bandlbl">Score</span><span class="bandnum" id="certScore">—</span></div>
+      <p class="cscore"><span id="certPct">0%</span> correct &nbsp;·&nbsp; <span id="certBreak"></span></p>
+      <p class="cmsg" id="certMsg"></p>
+      <div class="sig">
+        <div><span id="certDate"></span><small>Date</small></div>
+        <div><span>Nazila Motahari</span><small>Instructor</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="markbar no-print" style="border:0">
+    <input type="text" id="certNameIn" placeholder="Type your name for the certificate" style="border:1.5px solid var(--rule);border-radius:8px;padding:11px 14px;min-width:250px">
+    <button class="btn alt small" id="btnAddName">Put my name on it</button>
+    <button class="btn alt small" id="btnPrintCert">Print or save the certificate</button>
+  </div>
+</section>
+
+<p class="foot">Designed by: Nazila Motahari</p>
+</div>
+
+<div class="dock" id="dock" hidden>
+  <div class="dock-inner">
+    <div class="marks" id="marks"></div>
+    <button class="btn small alt" id="btnPrev">Back</button>
+    <button class="btn small" id="btnNext">Next part</button>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<script>
+"use strict";
+
+/* ============ picture art ============ */
+const S = (inner, vb="0 0 200 140") => `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${inner}</svg>`;
+const ART = {
+  car: S(`<g class="ln"><path d="M16 96 L16 78 Q16 70 26 68 L46 44 Q51 38 60 38 L118 38 Q128 38 133 45 L150 68 Q160 70 160 78 L160 96 Z"/>
+    <path class="ln hollow" d="M58 46 L58 66 L92 66 L92 46 Z"/><path class="ln hollow" d="M100 46 L100 66 L134 66 L124 46 Z"/>
+    <circle cx="52" cy="96" r="13"/><circle cx="126" cy="96" r="13"/></g>
+    <line x1="8" y1="114" x2="192" y2="114" stroke="#22375c" stroke-width="3" stroke-linecap="round"/>`),
+  ship: S(`<g class="ln"><path d="M22 92 L174 92 L154 118 L42 118 Z"/><rect x="52" y="64" width="98" height="28"/>
+    <rect x="74" y="44" width="54" height="20"/><rect x="94" y="20" width="16" height="24"/></g>
+    <g class="ln solid"><circle cx="70" cy="78" r="4"/><circle cx="90" cy="78" r="4"/><circle cx="110" cy="78" r="4"/><circle cx="130" cy="78" r="4"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <path d="M14 126 q12 -8 24 0 t24 0 t24 0 t24 0 t24 0 t24 0"/></g>`),
+  train: S(`<g class="ln"><path d="M50 108 L50 42 Q50 26 76 22 L124 22 Q150 26 150 42 L150 108 Z"/>
+    <path class="ln hollow" d="M66 40 L66 64 L96 64 L96 40 Z"/><path class="ln hollow" d="M104 40 L104 64 L134 64 L134 40 Z"/>
+    <rect x="60" y="76" width="80" height="16"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <line x1="20" y1="122" x2="180" y2="122"/><line x1="34" y1="130" x2="166" y2="130"/>
+    <line x1="56" y1="118" x2="48" y2="134"/><line x1="100" y1="118" x2="100" y2="134"/><line x1="144" y1="118" x2="152" y2="134"/></g>`),
+  clock: t => S(`<g class="ln"><rect x="38" y="26" width="124" height="84" rx="8"/><path d="M100 26 L100 12"/><circle cx="100" cy="8" r="6"/>
+    <path d="M100 110 L100 126"/><circle cx="100" cy="130" r="7"/></g>
+    <text x="100" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#22375c">${t}</text>`),
+  chips: S(`<g class="ln"><ellipse cx="100" cy="82" rx="76" ry="42"/><ellipse cx="100" cy="82" rx="62" ry="32" class="ln hollow"/>
+    <path d="M58 74 q10 -18 30 -12 q16 6 10 22 q-8 16 -26 10 q-16 -6 -14 -20 Z"/>
+    <rect x="112" y="62" width="34" height="9" rx="3" transform="rotate(-12 129 66)"/>
+    <rect x="112" y="76" width="34" height="9" rx="3" transform="rotate(4 129 80)"/>
+    <rect x="110" y="90" width="34" height="9" rx="3" transform="rotate(-8 127 94)"/></g>`),
+  bbq: S(`<g class="ln"><path d="M32 62 L168 62 L154 100 L46 100 Z"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <line x1="46" y1="72" x2="154" y2="72"/><line x1="50" y1="84" x2="150" y2="84"/>
+    <line x1="60" y1="100" x2="44" y2="128"/><line x1="140" y1="100" x2="156" y2="128"/></g>
+    <g class="ln"><ellipse cx="72" cy="66" rx="13" ry="8"/><ellipse cx="100" cy="66" rx="13" ry="8"/><ellipse cx="128" cy="66" rx="13" ry="8"/>
+    <rect x="60" y="40" width="80" height="7" rx="3"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round"><path d="M78 34 q6 -10 0 -18"/><path d="M100 32 q6 -10 0 -18"/><path d="M122 34 q6 -10 0 -18"/></g>`),
+  chickensalad: S(`<g class="ln"><ellipse cx="100" cy="82" rx="76" ry="42"/><ellipse cx="100" cy="82" rx="62" ry="32" class="ln hollow"/>
+    <path d="M66 88 q-12 -14 2 -24 q14 -10 26 2 l16 16 q-4 12 -16 14 q-16 2 -28 -8 Z"/>
+    <path d="M108 82 l16 16 q6 6 0 10 q-8 4 -12 -4 Z"/>
+    <path d="M128 70 q14 -10 22 2 q-10 14 -22 -2 Z"/><path d="M124 86 q16 -6 20 8 q-14 8 -20 -8 Z"/>
+    <path d="M108 62 q12 -12 22 -2 q-8 14 -22 2 Z"/></g>`),
+  poems: S(`<g class="ln"><path d="M20 104 Q58 88 98 100 Q138 88 180 104 L180 42 Q138 28 98 40 Q58 28 20 42 Z"/>
+    <path class="ln hollow" d="M98 40 L98 100"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="2.4" stroke-linecap="round">
+    <line x1="34" y1="56" x2="84" y2="52"/><line x1="34" y1="68" x2="84" y2="64"/><line x1="34" y1="80" x2="70" y2="77"/></g>
+    <text x="140" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#22375c">POEMS</text>
+    <g class="ln"><path d="M150 96 L172 40 q8 -14 12 2 L162 98 Z"/></g>`),
+  history: S(`<g class="ln"><path d="M22 106 Q58 90 98 102 Q138 90 178 106 L178 40 Q138 26 98 38 Q58 26 22 40 Z"/>
+    <path class="ln hollow" d="M98 38 L98 102"/><rect x="112" y="54" width="52" height="30" rx="3"/></g>
+    <text x="138" y="48" text-anchor="middle" font-family="Segoe UI,Arial" font-size="11" font-weight="700" fill="#22375c">ANCIENT</text>
+    <text x="138" y="96" text-anchor="middle" font-family="Segoe UI,Arial" font-size="11" font-weight="700" fill="#22375c">HISTORY</text>
+    <g fill="none" stroke="#22375c" stroke-width="2.4" stroke-linecap="round">
+    <line x1="36" y1="58" x2="84" y2="54"/><line x1="36" y1="70" x2="84" y2="66"/><line x1="36" y1="82" x2="72" y2="79"/></g>`),
+  jokes: S(`<g class="ln"><path d="M40 26 L160 26 Q168 26 168 34 L168 108 Q168 116 160 116 L40 116 Z"/>
+    <path class="ln hollow" d="M40 26 L40 116 L32 110 L32 32 Z"/></g>
+    <text x="104" y="62" text-anchor="middle" font-family="Segoe UI,Arial" font-size="16" font-weight="700" fill="#22375c">BOOK</text>
+    <text x="104" y="84" text-anchor="middle" font-family="Segoe UI,Arial" font-size="16" font-weight="700" fill="#22375c">OF JOKES</text>`),
+  table: S(`<g class="ln"><path d="M24 46 L176 46 L154 96 L46 96 Z"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <path d="M52 96 L58 128"/><path d="M148 96 L142 128"/><path d="M80 96 L80 128"/><path d="M120 96 L120 128"/>
+    <path d="M46 96 q14 10 28 0 q14 10 28 0 q14 10 28 0 q14 10 24 0"/></g>`),
+  hand: S(`<g class="ln"><rect x="68" y="66" width="66" height="52" rx="18"/>
+    <rect x="72" y="26" width="13" height="46" rx="6"/><rect x="88" y="18" width="13" height="54" rx="6"/>
+    <rect x="104" y="20" width="13" height="52" rx="6"/><rect x="120" y="30" width="13" height="42" rx="6"/>
+    <rect x="46" y="62" width="13" height="36" rx="6" transform="rotate(-32 52 80)"/>
+    <rect x="84" y="112" width="34" height="16" rx="5"/></g>`),
+  coat: S(`<g class="ln"><path d="M60 44 L100 30 L140 44 L158 92 L140 100 L138 124 L62 124 L60 100 L42 92 Z"/>
+    <path class="ln hollow" d="M100 30 L100 124"/><path class="ln hollow" d="M84 36 L100 58 L116 36"/></g>
+    <g class="ln solid"><circle cx="104" cy="72" r="4"/><circle cx="104" cy="90" r="4"/><circle cx="104" cy="108" r="4"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round"><path d="M100 30 L100 18 q0 -10 -12 -10"/></g>`),
+  scarf: S(`<g class="ln"><path d="M28 40 q36 -14 72 6 q36 20 72 6 l0 26 q-36 14 -72 -6 q-36 -20 -72 -6 Z"/>
+    <path d="M112 68 l26 44 l22 -8 l-24 -40 Z"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <line x1="140" y1="114" x2="136" y2="128"/><line x1="150" y1="112" x2="148" y2="126"/><line x1="158" y1="108" x2="158" y2="122"/></g>`),
+  shirt: S(`<g class="ln"><path d="M66 34 L88 26 L100 40 L112 26 L134 34 L156 52 L142 70 L132 62 L132 118 L68 118 L68 62 L58 70 L44 52 Z"/>
+    <path class="ln hollow" d="M88 26 L100 40 L112 26"/></g>
+    <g class="ln solid"><circle cx="100" cy="58" r="3.4"/><circle cx="100" cy="74" r="3.4"/><circle cx="100" cy="90" r="3.4"/><circle cx="100" cy="106" r="3.4"/></g>`),
+  gloves: S(`<g class="ln"><path d="M46 56 q0 -14 14 -14 q14 0 14 14 l0 24 q10 -6 16 2 q6 8 -2 16 l-18 20 q-8 8 -18 4 q-10 -4 -10 -16 Z"/>
+    <path d="M154 56 q0 -14 -14 -14 q-14 0 -14 14 l0 24 q-10 -6 -16 2 q-6 8 2 16 l18 20 q8 8 18 4 q10 -4 10 -16 Z"/></g>`),
+  sun: S(`<g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <line x1="72" y1="10" x2="72" y2="24"/><line x1="34" y1="24" x2="42" y2="34"/><line x1="110" y1="24" x2="102" y2="34"/>
+    <line x1="20" y1="58" x2="34" y2="58"/><line x1="30" y1="92" x2="40" y2="84"/></g>
+    <g class="ln"><circle cx="72" cy="58" r="26"/>
+    <path d="M66 108 q-22 0 -22 -18 q0 -16 18 -17 q2 -20 22 -20 q18 0 22 16 q22 -2 24 18 q0 21 -24 21 Z"/></g>`),
+  wind: S(`<g class="ln"><path d="M58 96 q-22 0 -22 -18 q0 -17 19 -18 q3 -22 24 -22 q20 0 23 18 q23 -2 23 20 q0 20 -25 20 Z"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <path d="M120 62 h34 q12 0 12 -10 q0 -9 -9 -9 q-8 0 -8 8"/>
+    <path d="M118 82 h44 q13 0 13 11 q0 10 -10 10 q-9 0 -9 -9"/>
+    <path d="M124 102 h22"/></g>`),
+  rain: S(`<g class="ln"><path d="M20 74 q22 -48 80 -48 q58 0 80 48 Z"/><path class="ln hollow" d="M100 26 L100 14"/>
+    <path class="ln hollow" d="M100 74 L100 112 q0 12 -14 12 q-12 0 -12 -10"/></g>
+    <g fill="none" stroke="#22375c" stroke-width="3" stroke-linecap="round">
+    <line x1="36" y1="92" x2="30" y2="108"/><line x1="62" y1="100" x2="56" y2="116"/>
+    <line x1="140" y1="92" x2="134" y2="108"/><line x1="166" y1="100" x2="160" y2="116"/></g>`)
+};
+
+/* ============ test data ============ */
+const PART1 = [
+  [1,"How did the woman travel?",["car","ship","train"],"C","She decided a car would get stuck in traffic, so she took the train instead."],
+  [2,"What time does the film start?",[ART.clock("18.00"),ART.clock("19.00"),ART.clock("18.10")],"B","They meet at six, and the film starts a whole hour later — so seven o'clock."],
+  [3,"What does the man eat?",["chips","bbq","chickensalad"],"C","He orders chicken, and asks for salad instead of chips."],
+  [4,"Which book is Jackie reading?",["poems","history","jokes"],"A","She says a bit of poetry helps her relax — not jokes and not an academic book."],
+  [5,"Where did the man leave his keys?",["table","hand","coat"],"B","She asks what is in his hand. He hadn't realised the keys were there all along."],
+  [6,"Which present did Mark buy?",["scarf","shirt","gloves"],"A","He asks whether she would rather have a nice scarf than gloves, and she agrees."],
+  [7,"What will the weather be like tomorrow?",["sun","wind","rain"],"A","Most people will wake up to warm sunshine in the morning."]
+];
+const PIC_IS_ART = {2:true};
+
+const PART2 = [
+  [8,"To become healthier you should",["dramatically change your life.","change some daily habits.","eat hardly anything."],"B",
+   "A few basic changes to your daily routine can improve your health dramatically — small habits, not a dramatic new life."],
+  [9,"If you don't manage to exercise as much as you should",["leave the gym.","try not to be negative about it.","be angry with yourself."],"B",
+   "The advice is not to focus on your failures but to stay positive."],
+  [10,"To improve your mood you should",["drink more tea and coffee.","only eat vegetables.","increase the amount of vegetables you eat."],"C",
+   "Eating healthily can improve your mood, and the greatest benefit came from eating more vegetables — more, not only."],
+  [11,"The survey",["showed quite dramatic results.","didn't have strong results.","didn't give any useful information."],"A",
+   "Eighty per cent of people felt better after changing what they ate or drank, which is a dramatic result."],
+  [12,"You should always",["do important jobs first.","do everything as quickly as possible.","try to finish what you start."],"C",
+   "If you start something, make sure you finish it."],
+  [13,"The doctor says",["you should never have a late night.","lack of sleep causes brain disease.","it's okay to go to bed late sometimes."],"C",
+   "Don't have too many late nights — although an occasional one won't do you any harm."]
+];
+const PART3 = [
+  [14,"The house was built in the","",".","19th century / nineteenth century / 19 century / 1800s","The guide calls it this wonderful 19th century house."],
+  [15,"The Reynold family lived in the house until","",".","1975","It was home to the Reynold family until 1975."],
+  [16,"The servants had rooms in the","",".","attic / the attic","The servants used to sleep in the attic."],
+  [17,"The art collection is in the","",".","dining room / the dining room","Through in the dining room there is a fine collection of paintings."],
+  [18,"George Reynold was a","",".","lawyer / a lawyer","George became a lawyer."],
+  [19,"George's brother died in a","","accident.","horse-riding / horse riding / horseriding","George's brother had a fatal horse-riding accident."]
+];
+const PART4 = [
+  [20,"Simon thinks Tina should talk about her problems.","YES","He says a problem shared is a problem halved — talking makes problems easier to cope with."],
+  [21,"Simon agrees that the teachers are unfair.","NO","He accepts that they pick on her, but says they have good reason to."],
+  [22,"Tina doesn't concentrate in class.","YES","Simon tells her she never listens to what the teachers are saying."],
+  [23,"Tina is ill.","NO","She says she is fine — the problem is that she goes to bed very late."],
+  [24,"Simon feels sorry for Tina.","NO","Once he hears the reason, he says he has no sympathy for her."],
+  [25,"Tina realises her mistake.","YES","She admits it may be her own fault and says she had better change her habits."]
+];
+const KEY = {};
+PART1.forEach(r=>KEY[r[0]]=r[3]);
+PART2.forEach(r=>KEY[r[0]]=r[3]);
+PART3.forEach(r=>KEY[r[0]]=r[3]);
+PART4.forEach(r=>KEY[r[0]]=r[2]);
+const WHY = {};
+PART1.forEach(r=>WHY[r[0]]=r[4]);
+PART2.forEach(r=>WHY[r[0]]=r[4]);
+PART3.forEach(r=>WHY[r[0]]=r[5]);
+PART4.forEach(r=>WHY[r[0]]=r[3]);
+const RANGE = {1:[1,7],2:[8,13],3:[14,19],4:[20,25]};
+
+/* ============ state ============ */
+const answers={}; let current=1, started=false, reviewing=false, result=null;
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+
+/* ============ build ============ */
+function buildPart1(){
+  $("#p1").innerHTML = PART1.map(([n,stem,pics])=>`
+    <div class="qblock" data-qrow="${n}">
+      <div class="qstem"><span class="num">${n}</span><span class="txt">${stem}</span></div>
+      <div class="pics">${pics.map((p,i)=>{const l="ABC"[i];
+        return `<button class="pic" data-pick="${n}" data-letter="${l}">
+          ${PIC_IS_ART[n]?p:ART[p]}
+          <span class="lt"><span class="tick">✓</span>${l}</span></button>`;}).join("")}
+      </div>
+      <div class="why" id="why-${n}"></div>
+    </div>`).join("");
+}
+function buildPart2(){
+  $("#p2").innerHTML = PART2.map(([n,stem,opts])=>`
+    <div class="qblock" data-qrow="${n}">
+      <div class="qstem"><span class="num">${n}</span><span class="txt">${stem}</span></div>
+      <div class="opts">${opts.map((t,i)=>{const l="ABC"[i];
+        return `<button class="opt" data-pick="${n}" data-letter="${l}"><span class="lt">${l}</span><span>${t}</span></button>`;}).join("")}
+      </div>
+      <div class="why" id="why-${n}"></div>
+    </div>`).join("");
+}
+function buildPart3(){
+  $("#p3").innerHTML = PART3.map(([n,before,mid,after])=>`
+    <div class="gapline" data-qrow="${n}">${before} <span class="num">${n}</span>
+      <input class="gap" data-q="${n}" aria-label="Question ${n}"> ${after}</div>
+    <div class="why" id="why-${n}"></div>`).join("");
+}
+function buildPart4(){
+  $("#p4").innerHTML = PART4.map(([n,stem])=>`
+    <tr data-qrow="${n}"><td><b>${n}</b> &nbsp; ${stem}</td>
+      <td class="c"><button class="ynbtn" data-pick="${n}" data-letter="YES" aria-label="Question ${n} yes"></button></td>
+      <td class="c"><button class="ynbtn" data-pick="${n}" data-letter="NO" aria-label="Question ${n} no"></button></td></tr>
+    <tr class="whyrow"><td colspan="3" style="padding:0 16px"><div class="why" id="why-${n}"></div></td></tr>`).join("");
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-pick]");
+  if(!b||reviewing) return;
+  const n=b.dataset.pick;
+  answers[n]=b.dataset.letter;
+  $$(`[data-pick="${n}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.letter===b.dataset.letter));
+  $$(`[data-pick="${n}"].ynbtn`).forEach(x=>x.textContent=x.classList.contains("sel")?"✓":"");
+  refresh();
+});
+function bindGaps(){
+  $$("[data-q]").forEach(el=>{
+    const h=()=>{ if(reviewing) return; answers[el.dataset.q]=el.value; el.classList.toggle("filled",!!el.value.trim()); refresh(); };
+    el.addEventListener("input",h);
+  });
+}
+
+/* ============ audio ============ */
+function renderReels(){
+  $$("[data-reel]").forEach(el=>{
+    const n=+el.dataset.reel;
+    el.innerHTML=`<div class="reel-top"><div class="reel-label"><b>Recording — Part ${n}</b>You will hear it twice. The pause and the second playing are inside the track.</div></div>
+      <audio controls preload="none" src="audio/part${n}.mp3"></audio>
+      <p class="warn">The audio file could not be found. Check that the <b>audio</b> folder sits next to this page and contains <b>part${n}.mp3</b>.</p>`;
+    el.querySelector("audio").addEventListener("error",()=>el.classList.add("broken"));
+  });
+}
+
+/* ============ marking ============ */
+function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.,;:!?"'()]/g," ").replace(/-/g," ").replace(/\s+/g," ").trim();}
+function variants(s){const a=norm(s);if(!a)return[];const set=new Set([a,a.replace(/^(the|a|an)\s+/,"")]);return[...set];}
+function matches(given,key){
+  const g=variants(given); if(!g.length) return false;
+  return String(key).split("/").some(alt=>variants(alt).some(x=>g.includes(x)));
+}
+function gradePart(p){
+  const [from,to]=RANGE[p]; const marks={}; let correct=0;
+  for(let q=from;q<=to;q++){
+    const ok = p===3 ? matches(answers[q]||"",KEY[q]) : (answers[q]||"")===KEY[q];
+    marks[q]=ok?"ok":"no"; if(ok) correct++;
+  }
+  return {correct,total:to-from+1,marks};
+}
+function paint(marks){
+  Object.keys(marks).forEach(q=>{
+    const st=marks[q];
+    const el=document.querySelector(`[data-q="${q}"]`);
+    if(el){
+      el.classList.remove("filled"); el.classList.add(st); el.disabled=true;
+      if(st==="no" && !el.nextElementSibling?.classList?.contains("solution")){
+        const s=document.createElement("span"); s.className="solution";
+        s.textContent=" ✓ "+KEY[q].split("/")[0].trim();
+        el.parentNode.insertBefore(s,el.nextSibling);
+      }
+    }
+    $$(`[data-pick="${q}"]`).forEach(x=>{
+      x.disabled=true;
+      if(x.dataset.letter===KEY[q]){ x.classList.add("ok"); if(x.classList.contains("ynbtn")) x.textContent="✓"; }
+      else if(answers[q]===x.dataset.letter){ x.classList.add("no"); if(x.classList.contains("ynbtn")) x.textContent="✗"; }
+    });
+    const w=$("#why-"+q);
+    if(w){ w.innerHTML="<b>Answer "+(KEY[q].split("/")[0].trim())+".</b> "+WHY[q]; w.classList.add("on"); }
+    const mk=document.querySelector(`[data-go="${q}"]`);
+    if(mk){ mk.classList.remove("filled"); mk.classList.add(st); }
+  });
+}
+function markPart(p){
+  const r=gradePart(p);
+  paint(r.marks);
+  $("#out"+p).innerHTML="Part "+p+": <b>"+r.correct+"</b> out of "+r.total+".";
+  const pill=$("#pill"+p); pill.textContent=r.correct+"/"+r.total; pill.classList.add("on");
+  document.querySelector(`[data-mark="${p}"]`).disabled=true;
+  refresh();
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-mark]"); if(b) markPart(+b.dataset.mark);});
+
+function finish(){
+  const per={}, all={}; let correct=0;
+  for(let p=1;p<=4;p++){
+    const r=gradePart(p); per[p]=r.correct; correct+=r.correct;
+    Object.assign(all,r.marks);
+    const pill=$("#pill"+p); pill.textContent=r.correct+"/"+r.total; pill.classList.add("on");
+  }
+  result={per,correct,marks:all};
+  paint(all);
+  const pct=Math.round(correct/25*100);
+  $("#scoreOut").textContent=correct+"/25";
+  $("#pctOut").textContent=pct+"%";
+  const level = correct>=21?"Secure B1" : correct>=17?"At B1" : correct>=13?"Approaching B1" : "Below B1";
+  $("#levelOut").textContent=level;
+  const best=[1,2,3,4].sort((a,b)=>(per[b]/(RANGE[b][1]-RANGE[b][0]+1))-(per[a]/(RANGE[a][1]-RANGE[a][0]+1)))[0];
+  $("#bestOut").textContent="Part "+best;
+  $("#scoreNote").textContent = correct>=17
+    ? "A pass at this level in a real B1 Preliminary paper."
+    : "Not yet a pass — but every part here can be practised separately.";
+  const tots={1:7,2:6,3:6,4:6};
+  for(let p=1;p<=4;p++){ $("#b"+p).style.width=(per[p]/tots[p]*100)+"%"; $("#v"+p).textContent=per[p]+"/"+tots[p]; }
+  const b=[];
+  if(correct>=17) b.push("🎯 Pass standard reached");
+  if(per[1]>=6) b.push("🖼 Picture questions secure");
+  if(per[2]>=5) b.push("🩺 Long talk secure");
+  if(per[3]>=5) b.push("✍️ Gap fill and spelling secure");
+  if(per[4]>=5) b.push("💬 Yes / no secure");
+  if(answeredCount()===25) b.push("✔️ Nothing left blank");
+  if(correct>=23) b.push("🏆 23 or more");
+  $("#badges").innerHTML=b.map(x=>`<span class="badge">${x}</span>`).join("");
+  const weak=[1,2,3,4].sort((a,b2)=>(per[a]/tots[a])-(per[b2]/tots[b2]))[0];
+  const tips={
+    1:"In Part 1 the recording mentions all three pictures. Listen for what the speaker decides in the end, not the first thing you recognise — “actually”, “in the end” and “instead” are the words that carry the answer.",
+    2:"Part 2 is one long talk with six questions in order. Read all six before you press play so you know what is coming, and remember that the words on the page are never the words you hear.",
+    3:"Part 3 is where spelling and copying matter. Write exactly what you hear — dates, centuries and compound words like horse-riding — and only the missing words, never a whole sentence.",
+    4:"In Part 4 the speakers agree and disagree quickly. The answer usually turns on one short reaction: “yes, but…”, “no, I'm fine”, “I have no sympathy”. Listen for the reply, not the statement."
+  };
+  $("#advice").textContent = correct>=23
+    ? "Excellent across all four parts. Keep using the second playing to check rather than to catch up."
+    : tips[weak];
+  const nm=($("#studentName").value.trim()||"Student");
+  $("#certName").textContent=nm; $("#certNameIn").value=$("#studentName").value.trim()||"";
+  $("#certScore").textContent=correct+"/25"; $("#certPct").textContent=pct+"%";
+  $("#certBreak").textContent="Parts: "+[1,2,3,4].map(p=>per[p]).join(" · ");
+  $("#certMsg").textContent = correct>=23 ? "An excellent result, comfortably above the B1 pass standard."
+    : correct>=17 ? "A pass at B1 level in the Listening paper."
+    : correct>=13 ? "Close to the pass standard. A little more practice with the long talk and the gap fill will carry this over the line."
+    : "A full practice paper completed. Working through the review notes below is where the next marks come from.";
+  $("#certDate").textContent=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+  show("scrResult"); $("#dock").hidden=true; $("#chipProgress").hidden=true;
+  if(correct>=17) confetti();
+}
+$("#btnFinish").onclick=finish;
+$("#btnReview").onclick=()=>{
+  reviewing=true; show("scrTest"); $("#dock").hidden=false; showPart(1);
+  $$("[data-mark]").forEach(b=>b.disabled=true);
+  $("#btnFinish").textContent="Back to my result";
+  $("#btnFinish").onclick=()=>{show("scrResult");$("#dock").hidden=true;};
+  $("#btnSaveAttempt").hidden=true;
+};
+
+/* ============ nav ============ */
+function answeredCount(){let n=0;for(let q=1;q<=25;q++) if((answers[q]||"").trim()) n++;return n;}
+function buildPalette(){
+  let h="";
+  for(let p=1;p<=4;p++){
+    h+=`<div class="mgroup"><span>P${p}</span>`;
+    for(let q=RANGE[p][0];q<=RANGE[p][1];q++) h+=`<button class="mk" data-go="${q}">${q}</button>`;
+    h+=`</div>`;
+  }
+  $("#marks").innerHTML=h;
+  $$("[data-go]").forEach(b=>b.onclick=()=>{
+    const q=+b.dataset.go;
+    const p=[1,2,3,4].find(x=>q>=RANGE[x][0]&&q<=RANGE[x][1]);
+    showPart(p);
+    const t=document.querySelector(`[data-qrow="${q}"]`);
+    if(t) t.scrollIntoView({block:"center",behavior:"smooth"});
+  });
+}
+function refresh(){
+  $("#ansCount").textContent=answeredCount();
+  $$("[data-go]").forEach(b=>{
+    const q=+b.dataset.go;
+    if(!b.classList.contains("ok")&&!b.classList.contains("no"))
+      b.classList.toggle("filled",!!(answers[q]||"").trim());
+    const p=[1,2,3,4].find(x=>q>=RANGE[x][0]&&q<=RANGE[x][1]);
+    b.classList.toggle("here",p===current);
+  });
+  $$(".tab").forEach(t=>{
+    const p=+t.dataset.tab; let done=true;
+    for(let q=RANGE[p][0];q<=RANGE[p][1];q++) if(!(answers[q]||"").trim()) done=false;
+    t.classList.toggle("done",done);
+  });
+}
+function buildTabs(){
+  $("#tabs").innerHTML=[1,2,3,4].map(p=>`<button class="tab${p===1?" on":""}" data-tab="${p}"><span class="dot"></span>Part ${p}</button>`).join("");
+  $$(".tab").forEach(t=>t.onclick=()=>showPart(+t.dataset.tab));
+}
+function showPart(p){
+  current=p;
+  $$(".part").forEach((el,i)=>el.hidden=(i+1!==p));
+  $$(".tab").forEach(t=>t.classList.toggle("on",+t.dataset.tab===p));
+  $("#btnPrev").disabled=p===1; $("#btnNext").disabled=p===4;
+  $("#btnNext").textContent=p===4?"Last part":"Next part";
+  document.querySelectorAll("audio").forEach(a=>{if(!a.paused)a.pause();});
+  window.scrollTo({top:0,behavior:"smooth"});
+  refresh();
+}
+$("#btnPrev").onclick=()=>showPart(Math.max(1,current-1));
+$("#btnNext").onclick=()=>showPart(Math.min(4,current+1));
+
+/* ============ save / load ============ */
+function download(name,obj){
+  const b=new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function slug(){return ($("#studentName").value.trim()||"student").replace(/\s+/g,"-").toLowerCase();}
+const saveAttempt=()=>download("pet-listening-test1-"+slug()+".json",
+  {type:"pet-l-attempt",version:1,name:$("#studentName").value.trim(),answers});
+$("#btnSaveAttempt").onclick=saveAttempt; $("#btnSave").onclick=saveAttempt;
+$("#btnSaveResult").onclick=()=>download("pet-listening-test1-result-"+slug()+".json",
+  {type:"pet-l-result",version:1,name:$("#studentName").value.trim(),score:result.correct,total:25,
+   perPart:result.per,answers,date:new Date().toISOString()});
+$("#btnResume").onclick=()=>$("#fileResume").click();
+$("#fileResume").onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result);
+    Object.assign(answers,d.answers||{});
+    if(d.name)$("#studentName").value=d.name;
+    start();
+    $$("[data-q]").forEach(el=>{const v=answers[el.dataset.q];if(v){el.value=v;el.classList.add("filled");}});
+    $$("[data-pick]").forEach(x=>{
+      if(answers[x.dataset.pick]===x.dataset.letter){x.classList.add("sel");if(x.classList.contains("ynbtn"))x.textContent="✓";}});
+    refresh();
+  }catch(err){alert("That file could not be read. Choose an answers file saved from this test.");}};
+  r.readAsText(f); e.target.value="";
+};
+
+/* ============ certificate ============ */
+$("#btnAddName").onclick=()=>{
+  const v=$("#certNameIn").value.trim(); if(!v){$("#certNameIn").focus();return;}
+  $("#studentName").value=v; $("#certName").textContent=v;
+};
+$("#certNameIn").addEventListener("keydown",e=>{if(e.key==="Enter")$("#btnAddName").click();});
+$("#btnPrintCert").onclick=()=>{
+  if(!$("#studentName").value.trim()&&$("#certNameIn").value.trim())$("#btnAddName").click();
+  document.body.classList.add("cert-only"); window.print();
+  setTimeout(()=>document.body.classList.remove("cert-only"),600);
+};
+
+/* ============ screens ============ */
+function show(id){$$(".screen").forEach(s=>s.classList.toggle("on",s.id===id));}
+function start(){
+  started=true; show("scrTest"); $("#dock").hidden=false;
+  $("#chipProgress").hidden=false; $("#btnSave").hidden=false;
+  buildTabs(); buildPalette(); showPart(1); refresh();
+}
+$("#btnStart").onclick=start;
+$("#btnRetake").onclick=()=>location.reload();
+$("#btnAr").onclick=()=>document.body.classList.toggle("show-ar");
+
+/* ============ confetti ============ */
+function confetti(){
+  const c=$("#confetti"),x=c.getContext("2d");
+  c.style.display="block";c.width=innerWidth;c.height=innerHeight;
+  const cols=["#22375c","#c4303f","#b8860b","#5d7ba8","#177a55"];
+  const bits=Array.from({length:130},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.6,
+    w:6+Math.random()*7,h:9+Math.random()*9,vy:2+Math.random()*3.2,vx:-1+Math.random()*2,
+    r:Math.random()*6,vr:-.15+Math.random()*.3,col:cols[(Math.random()*cols.length)|0]}));
+  let f=0;(function loop(){
+    x.clearRect(0,0,c.width,c.height);f++;
+    bits.forEach(b=>{b.y+=b.vy;b.x+=b.vx;b.r+=b.vr;
+      x.save();x.translate(b.x,b.y);x.rotate(b.r);x.fillStyle=b.col;x.fillRect(-b.w/2,-b.h/2,b.w,b.h);x.restore();});
+    if(f<300)requestAnimationFrame(loop);else{c.style.display="none";x.clearRect(0,0,c.width,c.height);}
+  })();
+}
+
+/* ============ init ============ */
+buildPart1(); buildPart2(); buildPart3(); buildPart4(); bindGaps(); renderReels();
+window.addEventListener("beforeunload",e=>{if(started&&!result){e.preventDefault();e.returnValue="";}});
+</script>
+</body>
+</html>
