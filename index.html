@@ -569,13 +569,23 @@ function bindGaps(){
 }
 
 /* ============ audio ============ */
+/* The recordings may sit either in an audio/ folder or beside this page.
+   Try the folder first, then fall back to the same folder. */
 function renderReels(){
   $$("[data-reel]").forEach(el=>{
     const n=+el.dataset.reel;
+    const paths=["audio/part"+n+".mp3","part"+n+".mp3","audio/Part"+n+".mp3"];
     el.innerHTML=`<div class="reel-top"><div class="reel-label"><b>Recording — Part ${n}</b>You will hear it twice. The pause and the second playing are inside the track.</div></div>
-      <audio controls preload="none" src="audio/part${n}.mp3"></audio>
-      <p class="warn">The audio file could not be found. Check that the <b>audio</b> folder sits next to this page and contains <b>part${n}.mp3</b>.</p>`;
-    el.querySelector("audio").addEventListener("error",()=>el.classList.add("broken"));
+      <audio controls preload="metadata" src="${paths[0]}"></audio>
+      <p class="warn">Recording ${n} could not be found. It should be at <b>audio/part${n}.mp3</b> or <b>part${n}.mp3</b>, in the same place as this page.</p>`;
+    const a=el.querySelector("audio");
+    let i=0, wanted=false;
+    a.addEventListener("play",()=>{wanted=true;});
+    a.addEventListener("error",()=>{
+      i++;
+      if(i<paths.length){ a.src=paths[i]; a.load(); if(wanted) a.play().catch(()=>{}); }
+      else el.classList.add("broken");
+    });
   });
 }
 
